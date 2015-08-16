@@ -1,0 +1,26 @@
+var postcomment = require ('../views/postcomments.js');
+
+module.exports = {
+  'step one' : function (browser) {
+    browser
+      .url('http://testip.jamaland.com')
+      .waitForElementVisible('body', 1000)
+      .setValue('#j_username', 'ksadagopan')
+      .setValue('#j_password', 'jAmA2015')
+      .click('#loginButton')
+      .waitForElementVisible('body', 1000)
+      .waitForElementVisible('.inactive > a[href=\'collaboration/comments\']', 1000)
+      .click('.inactive > a[href=\'collaboration/comments\']')
+      .waitForElementVisible('body', 1000)
+      .getCookie(name,function (result){
+      	browser.assert.equal(result.name,'JSESSIONID')
+      	browser.assert.equal(result.value,'12342442');
+
+      })
+     // .click('#add-comment .inline-richtext-placeholder.j-inline-richtext-placeholder')
+      //.setValue('#js-add-comment-field>p','test')
+      //.click('.ladda-button.slide-left.btn.btn-primary.add-comment.js-add-comment')
+
+
+  }
+};
